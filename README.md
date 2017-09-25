@@ -1,4 +1,4 @@
-# twinepm-server-heroku
+# twine-package-manager
 A package manager for modules, styles, and themes useful in writing hypertext fiction. Provides a shareable communal space for the sharing and usage of code.
 
 ## Structure
