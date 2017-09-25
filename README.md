@@ -1,5 +1,5 @@
 # twinepm-server-heroku
-A PHP backend for the Twine Package Manager.
+A package manager for modules, styles, and themes useful in writing hypertext fiction. Provides a shareable communal space for the sharing and usage of code.
 
 ## Structure
 
