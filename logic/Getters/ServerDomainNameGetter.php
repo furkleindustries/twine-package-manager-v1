@@ -1,8 +1,8 @@
 <?php
 namespace TwinePM\Getters;
 
-class ServerDomainNameGetter implements IGetter {
-    public static function get(array $context = null): string {
+class ServerDomainNameGetter {
+    function __invoke(): string {
         return getenv("SERVER_URL");
     }
 }

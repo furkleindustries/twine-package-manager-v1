@@ -3,6 +3,8 @@ namespace TwinePM\Getters;
 
 use Defuse\Crypto;
 use Defuse\Crypto\Key;
+use Psr\Http\Message\ServerRequestInterface;
+use Slim\Container;
 use TwinePM\ServiceProviders\EndpointServiceProvider;
 use TwinePM\ServiceProviders\FilterServiceProvider;
 use TwinePM\ServiceProviders\GetterServiceProvider;
@@ -13,8 +15,6 @@ use TwinePM\ServiceProviders\SorterServiceProvider;
 use TwinePM\ServiceProviders\SqlAbstractionServiceProvider;
 use TwinePM\ServiceProviders\TransformerServiceProvider;
 use TwinePM\ServiceProviders\ValidatorServiceProvider;
-use Psr\Http\Message\ServerRequestInterface;
-use Slim\Container;
 class TwinePmContainerGetter {
     function __invoke(
         ServerRequestInterface $request,
@@ -47,8 +47,13 @@ class TwinePmContainerGetter {
             return function(string $message) use ($key) {
                 $algo = "sha256";
                 $keyStr = $key->saveToAsciiSafeString();
-                return hash_hmac($algo, $message, $keyStr)
+                return hash_hmac($algo, $message, $keyStr);
             };
+        };
+
+        $container["environmentMode"] = function() {
+            $env = getenv("TWINEPM_MODE");
+            return $env ? $env : "production";
         };
 
         $container["makeDsn"] = function() {

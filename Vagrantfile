@@ -50,11 +50,16 @@ Vagrant.configure('2') do |config|
     "echo \"TWINEPM_REPO_SITE=$TWINEPM_REPO_SITE\nexport TWINEPM_REPO_SITE\n\" >> /home/ubuntu/.bashrc && " +
     "TWINEPM_REPO_OWNER=#{repoOwner} && " +
     'export TWINEPM_REPO_OWNER && ' +
-    "echo \"TWINEPM_REPO_OWNER=$TWINEPM_REPO_OWNER\nexport TWINEPM_REPO_OWNER\n\" >> /home/ubuntu/.bashrc && " +
+    "echo \"TWINEPM_REPO_OWNER=$TWINEPM_REPO_OWNER\n" +
+      "export TWINEPM_REPO_OWNER\n\" " +
+      '>> /home/ubuntu/.bashrc && ' +
     "TWINEPM_REPO_NAME=#{repoName} && " +
     'export TWINEPM_REPO_NAME && ' +
-    "echo \"TWINEPM_REPO_NAME=$TWINEPM_REPO_NAME\nexport TWINEPM_REPO_NAME\n\" >> /home/ubuntu/.bashrc && " +
-    'git clone -b $TWINEPM_BRANCH https://$TWINEPM_REPO_SITE/$TWINEPM_REPO_OWNER/$TWINEPM_REPO_NAME.git && ' +
+    "echo \"TWINEPM_REPO_NAME=$TWINEPM_REPO_NAME\n" +
+      "export TWINEPM_REPO_NAME\n\" >> " +
+      '/home/ubuntu/.bashrc && ' +
+    'git clone -b $TWINEPM_BRANCH ' +
+      "https://$TWINEPM_REPO_SITE/$TWINEPM_REPO_OWNER/$TWINEPM_REPO_NAME.git && " +
     'cd $TWINEPM_REPO_NAME && ' +
     'scripts/installHostDependencies && ' +
     'scripts/buildContainers --run && ' +

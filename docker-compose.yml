@@ -22,27 +22,22 @@ services:
       - database
       - cache
     environment: *mode
-    env_file:
-      - logic/.env
     networks:
       - backend_web
       - backend_persistence
 
-  database:
+  diskdb:
     build:
       context: .
-      dockerfile: database/Dockerfile
-    environment:
-      <<: *mode
-      POSTGRES_DB: twinepm
-      POSTGRES_USER: root
+      dockerfile: diskdb/Dockerfile
+    environment: *mode
     networks:
       - backend_persistence
 
-  cache:
+  memorydb:
     build: 
       context: .
-      dockerfile: cache/Dockerfile
+      dockerfile: memorydb/Dockerfile
     environment: *mode
     networks:
       - backend_persistence

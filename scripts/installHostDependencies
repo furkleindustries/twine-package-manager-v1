@@ -12,8 +12,8 @@ parser.parse_args()
 
 cmd = "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | " + \
     "sudo apt-key add -"
-
-out = subprocess.check_output(cmd, shell=True)
+proc = subprocess.Popen(cmd, shell=True)
+proc.communicate()
 
 proc = subprocess.Popen(['apt-key', 'fingerprint', '0EBFCD88'])
 proc.communicate()
@@ -34,6 +34,10 @@ proc.communicate()
 
 cmd = ['apt-get', 'install', '--no-install-recommends', '-y', 'docker-ce']
 proc = subprocess.Popen(cmd)
+proc.communicate()
+
+cmd = 'wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh'
+proc = subprocess.Popen(cmd, Shell=True)
 proc.communicate()
 
 version = '1.16.1'
