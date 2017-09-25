@@ -6,9 +6,12 @@ A PHP backend for the Twine Package Manager.
 The Twine Package Manager (TwinePM) is composed of four back-end servers, which manage data logic, persistence, and an HTML utility microclient; and a front-end server, which provides a rich web abstraction of nearly all the back-end's endpoints and the primary path for user-driven browser requests.
 
 ### Front-end
-There are 4 discrete layers of the front-end. All are contained within a 
+There are 4 discrete layers of the front-end. All are contained within a single Node container.
 
-1. Building - npm scripting is used to automate bundling a Node codebase through webpack, with transpiled by Babel, using an Express server and outputting a React/Redux progressive web app, server-rendered with next.js), 
+1. Building - npm scripting is used to automate bundling a Node codebase through webpack, with transpilation performed by Babel.
+2. HTTP - Content is served to the internet or a public-facing, reverse-proxy webserver using an Express server.
+3. Rendering - The app is rendered into a starting, human-readable version by next.js.
+4. Logic/View - The application itself is a React/Redux progressive web app using ES modules.
 
 ### Back-end
 There are 6 discrete layers of the back-end. The first two are only planned to be present in the development environment.
