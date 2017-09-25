@@ -29,13 +29,29 @@ This will parallelize the cloning process.
 
 <a name="virtualization" id="virtualization"></a>
 ### Virtualization
-In order to guarantee the particulars of the development environment, TwinePM has configuration to build a virtual machine which installs all dependencies and spins up all containers. An additional advantage of this is not needing to install Docker and its filesystem dependencies on your computer. This virtualization occurs through the use of [Vagrant](https://www.vagrantup.com), a tool which allows building and provisioning of VirtualBox.
+In order to guarantee the particulars of the development environment do not vary, TwinePM has configuration to build a virtual machine which installs all dependencies and spins up all containers. An additional advantage of this is not needing to install Docker and its filesystem dependencies on your computer. This virtualization occurs through the use of [Vagrant](https://www.vagrantup.com), a tool which allows building and provisioning of VirtualBox.
 
-If you don't already have the Vagrant package, there are a couple options to install it. If you're on a Linux system which uses apt-get, run:
+If you don't already have the Vagrant package, there are a couple options to install it. If you're on a Linux system which uses apt-get, run in the superproject directory:
 
 `scripts/installHostDependencies`
 
 Otherwise, go to the previous link and install the software.
+
+When Vagrant is installed, run in the superproject directory:
+
+`scripts/buildVm`
+
+This will download the Ubuntu Xenial image for the virtual machine and provision the VM. Once this is complete, assuming there are no errors, run:
+
+`vagrant ssh`
+
+If you modify the build system and want to rebuild the virtual machine to reflect this, run:
+
+`scripts/rebuildVm`
+
+Then `vagrant ssh` back into the virtual machine. Note that this will delete all files on the VM which are not created on some level by the Vagrantfile.
+
+If you are editing portions of a submodule outside the VM, it is both easier and faster to ssh onto the VM and pull those changes, rather than reprovisioning the entire VM.
 
 <a name="structure" id="structure"></a>
 ## Structure
@@ -48,7 +64,7 @@ There are 4 discrete layers of the front-end. All are contained within a single 
 
 1. Building - npm scripting is used to automate bundling a Node codebase through webpack, with transpilation performed by Babel. Testing is performed on this level but is only applied to the logic level.
 2. HTTP - Content is served to the internet or a public-facing, reverse-proxy webserver using an Express server.
-3. Rendering - The app is rendered into a starting, human-readable version by next.js.
+3. Rendering - The app is rendered into an initial, human-and-crawler-readable version by next.js.
 4. Logic/View - The application itself is a React/Redux progressive web app using ES modules. Testing is performed with Jest. Integration tests are planned, probably in PhantomJS.
 
 <a name="back-end" id="back-end"></a>
