@@ -1,9 +1,0 @@
-{% if loggedInUser %}
-    {% include "components/loggedInUserComponent.html.twig" %}
-
-    <form method="POST" action="logout">
-        <input type="submit" value="Logout">
-    </form>
-{% else %}
-    You are not logged in.
-{% endif %}
