@@ -34,7 +34,7 @@ In order to guarantee the particulars of the development environment, TwinePM ha
 <a name="structure" id="structure"></a>
 ## Structure
 
-The Twine Package Manager (TwinePM) is composed of four back-end servers, which manage data logic, persistence, and an HTML utility microclient; and a front-end server, which provides a rich web abstraction of nearly all the back-end's endpoints and the primary path for user-driven browser requests.
+TwinePM is composed of four back-end servers, which manage data logic, persistence, and an HTML utility microclient; and a front-end server, which provides a rich web abstraction of nearly all the back-end's endpoints and the primary path for user-driven browser requests.
 
 <a name="front-end" id="front-end"></a>
 ### Front-end
