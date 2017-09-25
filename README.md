@@ -15,7 +15,7 @@ A package manager for modules, styles, and themes useful in writing hypertext fi
 
 <a name="repositories" id="repositories"></a>
 ### Repositories
-To clone a repository, you'll first need [Git](https://git-scm.com/). Within your system terminal or Git Bash, type:
+To clone a repository, you'll first need [Git](https://git-scm.com). Within your system terminal or Git Bash, type:
 
 `git clone --recursive https://github.com/furkleindustries/twine-package-manager`
 
@@ -29,7 +29,13 @@ This will parallelize the cloning process.
 
 <a name="virtualization" id="virtualization"></a>
 ### Virtualization
-In order to guarantee the particulars of the development environment, TwinePM has configuration to build a virtual machine which installs all dependencies and spins up all containers. An additional advantage of this is not needing to install Docker and its filesystem dependencies on your computer. This virtualization occurs through the use of Vagrant, a tool which allows building and provisioning of VirtualBox.
+In order to guarantee the particulars of the development environment, TwinePM has configuration to build a virtual machine which installs all dependencies and spins up all containers. An additional advantage of this is not needing to install Docker and its filesystem dependencies on your computer. This virtualization occurs through the use of [Vagrant](https://www.vagrantup.com), a tool which allows building and provisioning of VirtualBox.
+
+If you don't already have the Vagrant package, there are a couple options to install it. If you're on a Linux system which uses apt-get, run:
+
+`scripts/installHostDependencies`
+
+Otherwise, go to the previous link and install the software.
 
 <a name="structure" id="structure"></a>
 ## Structure
