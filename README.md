@@ -1,10 +1,42 @@
-# twine-package-manager
-A package manager for modules, styles, and themes useful in writing hypertext fiction. Provides a shareable communal space for the sharing and usage of code.
+# Twine Package Manager (TwinePM, TPM)
+A package manager for modules, styles, and themes useful in writing hypertext fiction. Provides a communal space for the sharing and usage of code.
 
+## Table of contents
+
+* [Installation](#installation)
+    * [Repositories](#repositories)
+    * [Virtualization](#virtualization)
+* [Structure](#structure)
+    * [Front-end](#front-end)
+    * [Back-end](#back-end)
+
+<a name="installation" id="installation"></a>
+## Installation
+
+<a name="repositories" id="repositories"></a>
+### Repositories
+To clone a repository, you'll first need [Git](https://git-scm.com/). Within your system terminal or Git Bash, type:
+
+`git clone --recursive https://github.com/furkleindustries/twine-package-manager`
+
+One doesn't typically use `--recursive` when cloning projects. In this case, that usage is necessary because the top-level TwinePM superproject contains six submodules, and submodules are not cloned by default.
+
+If you find the cloning of the superproject takes too long, try:
+
+`git clone --recursive -j7 https://github.com/furkleindustries/twine-package-manager`
+
+This will parallelize the cloning process.
+
+<a name="virtualization" id="virtualization"></a>
+### Virtualization
+In order to guarantee the particulars of the development environment, TwinePM has configuration to build a virtual machine which installs all dependencies and spins up all containers. An additional advantage of this is not needing to install Docker and its filesystem dependencies on your computer. This virtualization occurs through the use of Vagrant, a tool which allows building and provisioning of VirtualBox.
+
+<a name="structure" id="structure"></a>
 ## Structure
 
 The Twine Package Manager (TwinePM) is composed of four back-end servers, which manage data logic, persistence, and an HTML utility microclient; and a front-end server, which provides a rich web abstraction of nearly all the back-end's endpoints and the primary path for user-driven browser requests.
 
+<a name="front-end" id="front-end"></a>
 ### Front-end
 There are 4 discrete layers of the front-end. All are contained within a single Node container.
 
@@ -13,6 +45,7 @@ There are 4 discrete layers of the front-end. All are contained within a single 
 3. Rendering - The app is rendered into a starting, human-readable version by next.js.
 4. Logic/View - The application itself is a React/Redux progressive web app using ES modules. Testing is performed with Jest. Integration tests are planned, probably in PhantomJS.
 
+<a name="back-end" id="back-end"></a>
 ### Back-end
 There are 6 discrete layers of the back-end. The first two are only planned to be present in the development environment.
 
