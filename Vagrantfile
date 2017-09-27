@@ -59,6 +59,7 @@ Vagrant.configure('2') do |config|
     'git clone --recursive -b $TWINEPM_BRANCH ' +
       "https://$TWINEPM_REPO_SITE/$TWINEPM_REPO_OWNER/$TWINEPM_REPO_NAME.git && " +
     'cd $TWINEPM_REPO_NAME && ' +
+    'apt-get update && ' +
     'apt-get install -y python-pip && ' +
     'pip install aws-shell && ' +
     'scripts/installHostDependencies && ' +
