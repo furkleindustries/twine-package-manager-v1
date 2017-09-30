@@ -61,6 +61,7 @@ Vagrant.configure('2') do |config|
     'cd $TWINEPM_REPO_NAME && ' +
     'apt-get update && ' +
     'apt-get install -y python-pip && ' +
+    'pip install --upgrade pip && ' +
     'pip install aws-shell && ' +
     'scripts/installHostDependencies && ' +
     'scripts/buildContainers --run && ' +
