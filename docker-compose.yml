@@ -19,8 +19,8 @@ services:
       context: .
       dockerfile: logic/Dockerfile
     depends_on:
-      - database
-      - cache
+      - diskdb
+      - memorydb
     environment: *mode
     networks:
       - backend_web
