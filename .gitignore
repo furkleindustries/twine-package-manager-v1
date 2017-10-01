@@ -1,4 +1,10 @@
-logs/
-ubuntu-xenial-16.04-cloudimg-console.log
-.vagrant
+client/
+diskdb/
 .DS_Store
+logic/
+logs/
+memorydb/
+scripts/
+.vagrant/
+ubuntu-xenial-16.04-cloudimg-console.log
+web/

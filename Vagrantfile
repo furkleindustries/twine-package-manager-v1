@@ -37,6 +37,9 @@ Vagrant.configure('2') do |config|
   repoOwner = ENV['TWINEPM_REPO_OWNER'] || defaultRepoOwner
 
   shellStr =
+    'apt-get update && ' +
+    'apt-get install -y python3 python-pip && ' +
+    'pip install --upgrade pip && ' +
     'cd /etc/ && ' +
     "TWINEPM_BRANCH=#{branch} && " +
     'export TWINEPM_BRANCH && ' +
@@ -56,12 +59,10 @@ Vagrant.configure('2') do |config|
     "echo \"TWINEPM_REPO_NAME=$TWINEPM_REPO_NAME\n" +
       "export TWINEPM_REPO_NAME\n\" >> " +
       '/home/ubuntu/.bashrc && ' +
-    'git clone --recursive -b $TWINEPM_BRANCH ' +
+    'git clone -b $TWINEPM_BRANCH ' +
       "https://$TWINEPM_REPO_SITE/$TWINEPM_REPO_OWNER/$TWINEPM_REPO_NAME.git && " +
     'cd $TWINEPM_REPO_NAME && ' +
-    'apt-get update && ' +
-    'apt-get install -y python-pip && ' +
-    'pip install --upgrade pip && ' +
+    './cloneSubrepositories && ' +
     'pip install aws-shell && ' +
     'scripts/installHostDependencies && ' +
     'scripts/buildContainers --run && ' +
