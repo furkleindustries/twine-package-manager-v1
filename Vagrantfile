@@ -30,7 +30,7 @@ Vagrant.configure('2') do |config|
   defaultBranch = 'dev'
   branch = ENV['TWINEPM_BRANCH'] || defaultBranch
 
-  defaultRepoSite = 'github.com'
+  defaultRepoSite = 'https://github.com'
   repoSite = ENV['TWINEPM_REPO_SITE'] || defaultRepoSite
 
   defaultRepoOwner = 'furkleindustries'
@@ -61,10 +61,10 @@ Vagrant.configure('2') do |config|
       "export TWINEPM_REPO_NAME\n\" >> " +
       '/home/ubuntu/.bashrc && ' +
     'git clone -b $TWINEPM_BRANCH ' +
-      "https://$TWINEPM_REPO_SITE/$TWINEPM_REPO_OWNER/$TWINEPM_REPO_NAME.git && " +
+      "$TWINEPM_REPO_SITE/$TWINEPM_REPO_OWNER/$TWINEPM_REPO_NAME && " +
     'cd $TWINEPM_REPO_NAME && ' +
+    './installHostDependencies && ' +
     './cloneSubrepositories && ' +
-    'scripts/installHostDependencies && ' +
     'scripts/buildContainers --run && ' +
     'echo "Done provisioning VM."'
 
