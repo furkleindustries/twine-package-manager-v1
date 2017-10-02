@@ -40,6 +40,7 @@ Vagrant.configure('2') do |config|
     'apt-get update && ' +
     'apt-get install -y python3 python-pip && ' +
     'pip install --upgrade pip && ' +
+    'pip install aws-shell && ' +
     'cd /etc/ && ' +
     "TWINEPM_BRANCH=#{branch} && " +
     'export TWINEPM_BRANCH && ' +
@@ -63,7 +64,6 @@ Vagrant.configure('2') do |config|
       "https://$TWINEPM_REPO_SITE/$TWINEPM_REPO_OWNER/$TWINEPM_REPO_NAME.git && " +
     'cd $TWINEPM_REPO_NAME && ' +
     './cloneSubrepositories && ' +
-    'pip install aws-shell && ' +
     'scripts/installHostDependencies && ' +
     'scripts/buildContainers --run && ' +
     'echo "Done provisioning VM."'

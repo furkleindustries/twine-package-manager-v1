@@ -10,23 +10,49 @@ parser = argparse.ArgumentParser(description='Stop the ' +
                                  'containerized versions of TwinePM ' +
                                  'services.')
 
-parser.add_argument('--branch', '-b', action='store_true', default='dev',
-                    help='use the master branch', nargs=1)
+branch_default = os.environ.get('TWINEPM_BRANCH') or 'dev'
+parser.add_argument('--branch', '-b', nargs=1, default=branch_default,
+                    help='set the branch of the repositories', type=str)
+
+default_subrepo_list = os.environ.get('TWINEPM_SUBREPO_LIST')
+if default_subrepo_list:
+    default_subrepo_list = default_subrepo_list.split(' ')
+    if not len(default_subrepo_list):
+        raise Exception('No subrepos provided.')
+else:
+    default_subrepo_list = ['client', 'diskdb', 'logic', 'memorydb',
+                            'scripts', 'web']
+
+subrepo_list_help = 'set the subrepositories which will be cloned.'
+parser.add_argument('--subrepo-list', '-l', nargs='+',
+                    default=default_subrepo_list, help=subrepo_list_help,
+                    type=list)
+
+site_help = 'set the site from which repositories are cloned'
+default_site = os.environ.get('TWINEPM_REPO_SITE') or 'https://github.com'
+parser.add_argument('--site', '-s', nargs=1, default=default_site,
+                    help=site_help, type=str)
+
+default_owner = os.environ.get('TWINEPM_REPO_OWNER') or 'furkleindustries'
+parser.add_argument('--owner', '-o', nargs=1, default=default_owner,
+                    help='set the owner of the subrepositories', type=str)
+
+envvar = os.environ.get('TWINEPM_REPO_NAME')
+default_repo_base_name = envvar or 'twine-package-manager'
+parser.add_argument('--base-name', '-n', nargs=1,
+                    default=default_repo_base_name, help='the name ' +
+                        'of the superrepository, which is used to ' +
+                        'compute the full subrepository names',
+                    type=str)
 
 args = parser.parse_args()
 
-prefix = 'twine-package-manager'
-repo_names = ['client', 'diskdb', 'logic', 'memorydb', 'scripts', 'web']
-repos = []
-for name in repo_names:
-    repos.append('{}-{}'.format(prefix, name))
+for subrepo_name in args.subrepo_list:
+    url = '{}/{}/{}-{}'.format(args.site, args.owner, args.base_name,
+                               subrepo_name)
+    file_path = '{}/{}'.format(dirname, subrepo_name)
 
-base_cmd = ['git', 'clone', '-b']
-for index, repo in enumerate(repos):
-    file_path = dirname + repo_names[index]
-    cmd = list(base_cmd)
-    cmd.extend([branch_name, args.branch])
-
+    cmd = ['git', 'clone', url, '-b', args.branch, file_path]
     proc = subprocess.Popen(cmd)
     proc.communicate()
 
