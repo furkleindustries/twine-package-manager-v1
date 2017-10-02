@@ -1,0 +1,22 @@
+#! /usr/bin/env python3
+
+import argparse
+import subprocess
+import os
+
+dirname = os.path.dirname(os.path.realpath(__file__))
+
+parser = argparse.ArgumentParser(description='Build the current TwinePM ' +
+                                 'virtual machine.')
+
+args = parser.parse_args()
+
+env = os.environ.copy()
+env['VAGRANT_CWD'] = dirname
+env['TWINEPM_BRANCH'] = 'dev'
+
+cmd = ['vagrant', 'up']
+proc = subprocess.Popen(cmd, env=env)
+proc.communicate()
+
+print('Started virtual machine.')
