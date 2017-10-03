@@ -1,0 +1,21 @@
+#! /usr/bin/env python3
+
+import argparse
+import subprocess
+import os
+
+dirname = os.path.dirname(os.path.realpath(__file__))
+
+parser = argparse.ArgumentParser(description='Start the current TwinePM ' +
+                                 'virtual machine.')
+
+args = parser.parse_args()
+
+cmd = ['vagrant', 'up']
+
+env = os.environ.copy()
+env['VAGRANT_CWD'] = dirname
+proc = subprocess.Popen(cmd, env=env)
+proc.communicate()
+
+print('Destroyed virtual machine.')
