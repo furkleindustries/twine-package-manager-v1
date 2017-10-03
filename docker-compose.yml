@@ -4,7 +4,6 @@ services:
   web:
     build:
       context: web/
-      dockerfile: web/Dockerfile
     depends_on:
       - logic
     environment: &mode
@@ -17,7 +16,6 @@ services:
   logic:
     build:
       context: logic/
-      dockerfile: logic/Dockerfile
     depends_on:
       - diskdb
       - memorydb
@@ -29,7 +27,6 @@ services:
   diskdb:
     build:
       context: diskdb/
-      dockerfile: diskdb/Dockerfile
     environment: *mode
     networks:
       - backend_persistence
@@ -37,7 +34,6 @@ services:
   memorydb:
     build:
       context: memorydb/
-      dockerfile: memorydb/Dockerfile
     environment: *mode
     networks:
       - backend_persistence
@@ -45,7 +41,6 @@ services:
   client:
     build:
       context: client/
-      dockerfile: client/Dockerfile
     environment: *mode
     networks:
       - frontend
