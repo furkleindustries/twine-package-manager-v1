@@ -11,7 +11,7 @@ services:
     networks:
       - backend_web
     ports:
-      - '443:80'
+      - '8000:8000'
 
   logic:
     build:
@@ -44,6 +44,8 @@ services:
     environment: *mode
     networks:
       - frontend
+    ports:
+      - '9000:9000'
 
 networks:
   backend_web:

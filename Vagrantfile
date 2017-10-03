@@ -25,7 +25,8 @@ Vagrant.configure('2') do |config|
 
   config.vm.define repoName
 
-  config.vm.network 'forwarded_port', guest: 443, host: 8000
+  config.vm.network 'forwarded_port', guest: 8000, host: 8000
+  config.vm.network 'forwarded_port', guest: 9000, host: 9000
 
   defaultBranch = 'dev'
   branch = ENV['TWINEPM_BRANCH'] || defaultBranch
