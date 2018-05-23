@@ -74,12 +74,12 @@ While the containers are built and run automatically in the development environm
 
 Each subrepository, save for the build scripting repository, corresponds to a single container.
 
-* [Front-end](https://github.com/furkleindustries/twine-package-manager-client)
-* [Back-end business logic and request routing](https://github.com/furkleindustries/twine-package-manager-logic)
-* [Back-end web server](https://github.com/furkleindustries/twine-package-manager-web)
-* [On-disk permanent storage database configuration](https://github.com/furkleindustries/twine-package-manager-diskdb)
-* [In-memory ephemeral storage database configuration](https://github.com/furkleindustries/twine-package-manager-memorydb)
-* [Non-virtualization build scripting](https://github.com/furkleindustries/twine-package-manager-scripts)
+* [Front-end](https://github.com/furkleindustries/twine-package-manager-v1-client)
+* [Back-end business logic and request routing](https://github.com/furkleindustries/twine-package-manager-v1-logic)
+* [Back-end web server](https://github.com/furkleindustries/twine-package-manager-v1-web)
+* [On-disk permanent storage database configuration](https://github.com/furkleindustries/twine-package-manager-v1-diskdb)
+* [In-memory ephemeral storage database configuration](https://github.com/furkleindustries/twine-package-manager-v1-memorydb)
+* [Non-virtualization build scripting](https://github.com/furkleindustries/twine-package-manager-v1-scripts)
 
 <a name="structure" id="structure"></a>
 ## Structure
